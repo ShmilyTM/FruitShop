@@ -1,10 +1,11 @@
 package Model;
 
+import java.util.Hashtable;
 import java.util.Map;
 
 public class Order {
     private String Customer;
-    private Map<Fruit, Integer> order;
+    private Map<Fruit, Integer> order = new Hashtable<>();
 
     public Order() {
     }

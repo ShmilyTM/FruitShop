@@ -1,13 +1,13 @@
 package Model;
 
 import View.Validation;
-import java.io.File;
+import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
-    private List<Fruit> listOfFruit;
+    private List<Fruit> listOfFruit  = new ArrayList<>();
     private Validation val = new Validation();
-    private FileManager file;
+    private FileManager file = new FileManager();
 
     public Product() {
     }
@@ -16,52 +16,46 @@ public class Product {
         return (listOfFruit == null);
     }
     
-    public addFruit() {
+    public void addFruit() {
         int id = listOfFruit.size() + 1;
-        String name = val.
+        String name = val.getAndValidValue(">Enter fruit name: ", "[\\pL ]+", "Fruit name just contain letter");
+        for (Fruit fruit : listOfFruit) {
+            if(fruit.getName().equals(name)) { System.out.println("This fruit is available!");   return; }
+        }
+        
+        double price = val.getAndValidMoney(">Enter price of fruit: ");
+        int quality = val.getInt("Enter quanlity: ");
+        String origin = val.getAndValidValue(">Enter fruit origin: ", "[\\pL ]+", "Origin just contain letter");
+        listOfFruit.add(new Fruit(id, name, price, quality, origin));
+    //    writeInFile();
     }
     
+    public void showFruitManage() {
+        System.out.println("|+Iteam+| +++Fruit Name+++ | +++Origin+++ | +++Price+++ |");
+        for (Fruit fruit : listOfFruit) {
+            System.out.printf("|%-7d| %-16s | %-12s | %-11.3f |\n",
+                    fruit.getID(), fruit.getName(), fruit.getOrigin(), fruit.getPrice() );
+        }
+    }
+    
+    public Fruit searchFruit(String name){
+        for (Fruit fruit : listOfFruit) {
+            if(fruit.getName().equalsIgnoreCase(name)) {return fruit;}
+        }
+        return null;
+    }
+    
+    public void updateQuantity(String name, int newQuantity) {
+        Fruit temp = searchFruit(name);
+        if(temp == null) {
+            System.out.println("Can't find that fruit!");
+        } else {        //nếu nó ko đổi thì chạy search trực tiếp trong hàm này
+            temp.setQuanlity(newQuantity);
+        }
+    }
+    
+    //getFromFile
+    
+    //writeInFile
+    
 }
-
-//public class Product
-//private List<Fruit> listOfFruit;
-//Validation val = new Validation();
-//FileManager = new FileManager();
-//
-//public Product()...8 lines)
-//
-//public boolean isEmptyProduct ()1...3 lines
-//
-//public void addFruit () (
-//
-//int id;
-//String name;
-//39
-//40
-//double price;
-//int quality;
-//41
-//String origin;
-//42
-//id listofFruit.size() + 1;
-//43
-//44
-//name val.getAndValidValue("Enter fruit name: ", "[\\pL ]+", "Fruit name just contain letter").toUpperCase();
-//List<Fruit> searchList;
-//if ((searchList search (f->f.getName().equalsIgnoreCase (name))) != null) {
-//46
-//System.out.println("This fruit is available");
-//47
-//48
-//49
-//return;
-//price val.getAndValidMoney("Enter price of fruit: ");
-//quality= Integer.parseInt(val.getAndValidValue("Enter quanlity: ", "[\\d]", "Quanlity just contain number"));
-//50
-//51
-//52
-//origin val.getAndValidValue("Enter fruit origin: ", "[\\pL ]+", "Origin just contain letter").toUpperCase(); listofFruit.add(new Fruit (id, name, price, quality, origin));
-//53
-//54
-//writeInFile();
-//}
