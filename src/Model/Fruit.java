@@ -3,15 +3,16 @@ public class Fruit {
     private int ID;
     private String Name;
     private Double Price;
-    private int quanlity;
+    private int Quanlity;
     private String Origin;
     
     public Fruit() {}
+    
     public Fruit(int ID, String Name, Double Price, int quanlity, String Origin) {
         this.ID = ID;
         this.Name = Name;
         this.Price = Price;
-        this.quanlity = quanlity;
+        this.Quanlity = quanlity;
         this.Origin = Origin;
     }
     
@@ -40,11 +41,11 @@ public class Fruit {
     }
 
     public int getQuanlity() {
-        return quanlity;
+        return Quanlity;
     }
 
     public void setQuanlity(int quanlity) {
-        this.quanlity = quanlity;
+        this.Quanlity = quanlity;
     }
 
     public String getOrigin() {
@@ -56,7 +57,7 @@ public class Fruit {
     }
     @Override
     public String toString() {
-        return "Fruit{" + "ID=" + ID + ", Name=" + Name + ", Price=" + Price + ", quanlity=" + quanlity + ", Origin=" + Origin + '}';
+        return "Fruit{" + "ID=" + ID + ", Name=" + Name + ", Price=" + Price + ", quanlity=" + Quanlity + ", Origin=" + Origin + '}';
     }
     
 }
