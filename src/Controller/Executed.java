@@ -2,13 +2,13 @@
 package Controller;
 
 import Model.Product;
-import view.Menu;
+import View.Menu;
 
 public class Executed extends Menu{
     Product pr = new Product();
     
     public Executed() {
-        super("-*-*-*-*-*Round-Robin*-*-*-*-*-", new String[] {"Enter process.", 
+        super("-*-*-*-*-*Round-Robin*-*-*-*-*-", new String[] {"Add Fruit.", "showFruitManage ",
                     "Exit!"});
     }
     
