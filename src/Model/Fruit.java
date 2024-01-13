@@ -1,18 +1,19 @@
 package Model;
 public class Fruit {
+    private static int tempId = 1;
     private int ID;
     private String Name;
     private Double Price;
-    private int Quanlity;
+    private int Quantity;
     private String Origin;
     
     public Fruit() {}
     
-    public Fruit(int ID, String Name, Double Price, int quanlity, String Origin) {
-        this.ID = ID;
+    public Fruit(String Name, Double Price, int quantity, String Origin) {
+        this.ID = tempId++;         //tự động tăng id
         this.Name = Name;
         this.Price = Price;
-        this.Quanlity = quanlity;
+        this.Quantity = quantity;
         this.Origin = Origin;
     }
     
@@ -40,12 +41,12 @@ public class Fruit {
         this.Price = Price;
     }
 
-    public int getQuanlity() {
-        return Quanlity;
+    public int getQuantity() {
+        return Quantity;
     }
 
-    public void setQuanlity(int quanlity) {
-        this.Quanlity = quanlity;
+    public void setQuantity(int quanlity) {
+        this.Quantity = quanlity;
     }
 
     public String getOrigin() {
@@ -57,7 +58,7 @@ public class Fruit {
     }
     @Override
     public String toString() {
-        return "Fruit{" + "ID=" + ID + ", Name=" + Name + ", Price=" + Price + ", quanlity=" + Quanlity + ", Origin=" + Origin + '}';
+        return "Fruit{" + "ID=" + ID + ", Name=" + Name + ", Price=" + Price + ", quanlity=" + Quantity + ", Origin=" + Origin + '}';
     }
     
 }

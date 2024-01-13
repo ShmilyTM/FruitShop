@@ -1,14 +1,17 @@
 
 package Controller;
 
-import Model.Product;
+import Model.Order;
 import View.Menu;
 
 public class Executed extends Menu{
-    Product pr = new Product();
-    
+//    Product pr = new Product();
+    OrderManager or = new OrderManager();
+    ShopManagement sm = new ShopManagement();
+            
     public Executed() {
-        super("-*-*-*-*-*Round-Robin*-*-*-*-*-", new String[] {"Add Fruit.", "showFruitManage ",
+        super("-*-*-*-*-*Fruit Management*-*-*-*-*-", 
+             new String[] {"Create Fruit.", "View orders", "Shopping (for buyer)",
                     "Exit!"});
     }
     
@@ -22,13 +25,18 @@ public class Executed extends Menu{
     public void execute(int choice) {
         switch (choice) {
             case 1:
-                pr.addFruit();
+                sm.addFruit();              ///pr.addFruit();
                 break;
             case 2:
-                pr.showFruitManage();
+                or.showAllOrder();      //in all order
                 break;
             case 3:
-                System.out.println("close!");
+                Order customerNew = sm.getChoiceFruit();
+                customerNew = sm.printAllProductWillBuy(customerNew);
+                or.Ordering(customerNew);       //lưu trữ
+                break;
+            case 4:
+                System.out.println("Program closing!!!");
                 break;
             default:
                 throw new AssertionError();

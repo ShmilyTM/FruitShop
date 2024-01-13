@@ -1,5 +1,6 @@
 package View;
 
+import Model.Fruit;
 import java.util.Scanner;
 
 public class Validation {
@@ -48,6 +49,8 @@ public class Validation {
         }
     }
     
+    //////////////////////////////////////
+    
     public int getInt(String inputMsg) {
         Scanner sc = new Scanner(System.in);
         int result;
@@ -65,7 +68,7 @@ public class Validation {
         } while (true);
     }
     
-    public static String getString(String inputMsg) {
+    public String getString(String inputMsg) {
         Scanner sc = new Scanner(System.in);
         String result;
         do{
@@ -81,4 +84,32 @@ public class Validation {
         } while (true);
     }
     
+    public int checkQuatityFruit(String msg, Fruit fr) {
+        do {            
+            int quantityBuy = getInt(msg);
+            if(fr.getQuantity() < quantityBuy) {
+                System.out.println("The quantity is too large, currently available " + fr.getQuantity());
+            } else {
+                fr.setQuantity(fr.getQuantity() - quantityBuy);
+                return quantityBuy;
+            } 
+        } while (true);
+    }
+    
+    public boolean checkInputYN(String inputMsg) {
+        while (true) {
+            try {
+                String result = getString(inputMsg);
+                if (result.equalsIgnoreCase("Y")) {
+                    return true;
+                } else if (result.equalsIgnoreCase("N")) {
+                    return false;
+                } else {
+                    throw new Exception();
+                }
+            } catch (Exception e) {
+                System.out.println("Please input y/Y or n/N.");
+            }
+        }
+    }
 }
